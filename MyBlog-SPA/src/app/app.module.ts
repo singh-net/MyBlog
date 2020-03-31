@@ -1,3 +1,4 @@
+import { appRoutes } from './routes';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,26 +15,32 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
    declarations: [
       AppComponent,
       NavComponent,
       HomeComponent,
-      RegisterComponent
+      RegisterComponent,
+      AboutComponent,
+      ContactComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
       BsDropdownModule.forRoot(),
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       ErrorInterceptorProvider,
       AuthService,
       AlertifyService
-      ],
+   ],
    bootstrap: [
       AppComponent
    ]
