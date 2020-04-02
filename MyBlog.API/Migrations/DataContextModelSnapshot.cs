@@ -49,6 +49,21 @@ namespace MyBlog.API.Migrations
                     b.ToTable("BlogPosts");
                 });
 
+            modelBuilder.Entity("MyBlog.API.Models.BlogPostCategory", b =>
+                {
+                    b.Property<int>("BlogPostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BlogPostId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("BlogPostCategories");
+                });
+
             modelBuilder.Entity("MyBlog.API.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -139,6 +154,21 @@ namespace MyBlog.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("MyBlog.API.Models.BlogPostCategory", b =>
+                {
+                    b.HasOne("MyBlog.API.Models.BlogPost", "BlogPost")
+                        .WithMany("BlogPostCategories")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBlog.API.Models.Category", "Category")
+                        .WithMany("BlogPostCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyBlog.API.Models.Photo", b =>

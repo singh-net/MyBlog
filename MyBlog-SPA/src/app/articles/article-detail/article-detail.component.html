@@ -1,0 +1,11 @@
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{article.title}}</h2>
+        <p class="blog-post-meta">{{article.dateCreated | date}} <a href="#">Mark</a></p>
+        <div [innerHTML]="article.contents"></div>
+        
+       </div>   
+    </div>
+  </div>

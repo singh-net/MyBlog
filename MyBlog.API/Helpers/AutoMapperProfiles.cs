@@ -21,6 +21,23 @@ namespace MyBlog.API.Helpers
               .ForMember(dest => dest.Age, 
                     opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotosForDetailDto>(); 
+
+            
+            CreateMap<BlogPost, BlogPostsForListDto>();               
+            
+            CreateMap<Category, CategoriesForListDto>()
+                    .ForMember(dest => dest.Id, 
+                    opt => opt.MapFrom(src => src.Id)
+                    )
+
+                   .ForMember(dest => dest.Name, 
+                    opt => opt.MapFrom(src => src.Name)
+                    );
+
+            CreateMap<UserForUpdateDto, User>();
+
+                 
+                    
         }
     }
 }

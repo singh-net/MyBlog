@@ -41,6 +41,7 @@ namespace MyBlog.API
                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
             services.AddAutoMapper(typeof (BlogRepository).Assembly);
 
