@@ -43,6 +43,8 @@ namespace MyBlog.API
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+
             services.AddAutoMapper(typeof (BlogRepository).Assembly);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

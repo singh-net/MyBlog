@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 import { PreventUnsavedChanges } from './_guard/prevent-unsaved-changes.guard';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
@@ -18,6 +19,7 @@ export const appRoutes: Routes = [
     { path: '', component: HomeComponent  },
     { path: 'articles', component: ArticlesListComponent },
     { path: 'articles/:id/:status', component: ArticleDetailComponent },
+    { path: 'register', component: RegisterComponent },
 
     {
         path: '',

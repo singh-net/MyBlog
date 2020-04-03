@@ -23,6 +23,10 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/members']">Members</a>
       </li>
+
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/register']">Register</a>
+      </li>
       
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/articles']">Articles</a>
@@ -31,6 +35,9 @@
     </ul>
 
  <div *ngIf="loggedIn()" class="dropdown" dropdown>
+  <span class="mr-2">
+    <img src="{{photoUrl || '../../../assets/user.png'}}" alt="">
+  </span>
   <a class="dropdown-toggle text-light" dropdownToggle>
     Welcome {{authService.decodedToken.unique_name | titlecase}}
   </a>
