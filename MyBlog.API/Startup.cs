@@ -39,11 +39,14 @@ namespace MyBlog.API
 
             services.AddDbContext<DataContext>(x =>
                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+
+            services.AddScoped<LogUserActivity>();
 
             services.AddAutoMapper(typeof (BlogRepository).Assembly);
 
@@ -69,7 +72,7 @@ namespace MyBlog.API
                 });
 
 
-            services.AddCors();
+            
 
 
         }

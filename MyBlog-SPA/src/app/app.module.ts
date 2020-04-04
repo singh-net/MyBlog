@@ -8,16 +8,14 @@ import { appRoutes } from './routes';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
-
-
 
 
 import { AppComponent } from './app.component';
@@ -56,7 +54,8 @@ export function tokenGetter() {
       PhotoEditorComponent,
       ArticlesComponent,
       ArticleDetailComponent,
-      ArticlesListComponent,
+      ArticlesListComponent
+
    ],
    imports: [
       BrowserModule,
@@ -66,6 +65,8 @@ export function tokenGetter() {
       FileUploadModule,
       TabsModule.forRoot(),
       BsDropdownModule.forRoot(),
+      ButtonsModule.forRoot(),
+      PaginationModule.forRoot(),
       BrowserAnimationsModule,
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
