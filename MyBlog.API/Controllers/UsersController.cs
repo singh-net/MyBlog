@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyBlog.API.Data;
 using MyBlog.API.Dtos;
 using MyBlog.API.Helpers;
+using MyBlog.API.Models;
 
 namespace MyBlog.API.Controllers
 {
@@ -35,7 +36,7 @@ namespace MyBlog.API.Controllers
 
             userParams.UserId = currentUserId;
 
-           
+
 
             var users = await _repo.GetUsers(userParams);
 
@@ -46,7 +47,7 @@ namespace MyBlog.API.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpGet("{id}", Name="GetUser")]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
@@ -71,6 +72,37 @@ namespace MyBlog.API.Controllers
                 return NoContent();
 
             throw new Exception("Updating user failed on save");
+
+        }
+
+        [HttpPost("{id}/like/{recipientId}")]
+        public async Task<IActionResult> LikeUser(int id, int recipientId)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var like = await _repo.GetLike(id, recipientId);
+            if (like != null)
+            {
+                return BadRequest("You already like this user");
+            }
+            if (await _repo.GetUser(recipientId) == null)
+                return NotFound();
+
+            like = new Like
+            {
+                LikerId = id,
+                LikeeId = recipientId
+            };
+
+            _repo.Add<Like>(like);
+
+            if (await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed to like user");
 
         }
 

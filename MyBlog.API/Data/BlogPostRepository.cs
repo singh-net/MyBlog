@@ -36,9 +36,7 @@ namespace MyBlog.API.Data
                     .Include(c => c.BlogPostCategories)                   
                      .ThenInclude(a => a.Category)   
                     //.ThenInclude(d => d.Name)        
-                    .ToListAsync();
-
-                    
+                    .ToListAsync();            
 
             return blogPosts;
         }

@@ -17,6 +17,8 @@ namespace MyBlog.API.Models
         public DateTime RegisterDate { get; set; }
         public string Status { get; set; }
         public ICollection<Photo> Photos { get; set; }
+        public ICollection<Like> Likers { get; set; }
+         public ICollection<Like> Likees { get; set; }
         
     }
 }

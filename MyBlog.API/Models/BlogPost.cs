@@ -12,8 +12,7 @@ namespace MyBlog.API.Models
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public string Status { get; set; }
-        public ICollection<BlogPostCategory> BlogPostCategories { get; set; }
-        
+        public ICollection<BlogPostCategory> BlogPostCategories { get; set; }       
 
         
     }

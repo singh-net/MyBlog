@@ -33,6 +33,7 @@ login(model: any) {
           localStorage.setItem('user', JSON.stringify(user.user));
           this.currentUser = user.user;
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          this.changeMemberPhoto(this.currentUser.photoUrl);
         }
       })
     );

@@ -1,3 +1,5 @@
+import { ListsResolver } from './_resolvers/lists.resolver';
+import { ListsComponent } from './members/lists/lists.component';
 import { RegisterComponent } from './register/register.component';
 import { PreventUnsavedChanges } from './_guard/prevent-unsaved-changes.guard';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
@@ -20,6 +22,8 @@ export const appRoutes: Routes = [
     { path: 'articles', component: ArticlesListComponent },
     { path: 'articles/:id/:status', component: ArticleDetailComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'about', component: AboutComponent},
+    { path: 'contact', component: ContactComponent },
 
     {
         path: '',
@@ -30,8 +34,7 @@ export const appRoutes: Routes = [
             { path: 'members/:id', component: MemberDetailComponent, resolve: { user: MemberDetailResolver} },
             { path: 'member/edit', component: MemberEditComponent, 
                 resolve: { user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges] },
-            { path: 'about', component: AboutComponent},
-            { path: 'contact', component: ContactComponent },
+            { path: 'lists', component: ListsComponent, resolve: {users: ListsResolver}},
         ]
     },
 
